@@ -1,0 +1,38 @@
+from matplotlib import rc
+from matplotlib import gridspec
+
+plt.rcParams["figure.figsize"] = (10,10)
+plt.rcParams['axes.grid'] = True 
+
+gs = gridspec.GridSpec(2,1,height_ratios=[3,1])
+
+plt.subplot(gs[0])
+plt.xlim(0,8000)
+plt.ylabel("Expected events / 100 GeV",fontsize = 20)
+plt.title("$\sqrt{s}$ = 13 TeV, L = 137 fb$^{-1}$", loc='left',fontsize=15)
+plt.yscale('log')
+#plt.hist(Wprimetot_dat,bins=np.arange(0,8000+100,100),weights=Wprimetot_w,color='blue',histtype='step',label = 'non-interf')
+a = plt.hist(Wprimetot_dat,bins=np.arange(0,8000+100,100),weights=Wprimetot_w,color='blue',linewidth=2,histtype='step',label = 'non-interf')
+b = plt.hist(s_dat,bins=np.arange(0,8000+100,100),weights=s_w,color='red',histtype='step',linewidth=2, label = 'interf')
+plt.legend(fontsize = 20)
+plt.xticks(fontsize=15)
+plt.yticks(fontsize=15)
+
+
+plt.subplot(gs[1])
+plt.xlim(0,8000)
+plt.ylim(0.0,3.0)
+c = a[0] / b[0]
+#print(c)
+c = np.nan_to_num(c,posinf=0,neginf=0)
+xxx = a[1]
+yyy = c
+print(xxx)
+print(yyy)
+plt.plot(xxx[0:80],yyy,'bo',color='black')
+plt.axhline(y=1.0, color='r', linewidth=1)
+plt.xlabel("M$_{T}$ [GeV]",fontsize = 20)
+plt.ylabel("ratio",fontsize = 20)
+plt.xticks(fontsize=15)
+plt.yticks(fontsize=15)
+# plt.savefig("drive/MyDrive/wwp_inter.png")
