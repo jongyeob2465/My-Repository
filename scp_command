@@ -1,0 +1,8 @@
+# send file to file using scp command in Linux (to KISTI server)
+scp -P {port_number} {filename} cykim@ui10.sdfarm.kr:{file_location}
+
+# if you want to send a directory then
+
+scp -P {port_number} {filename} cykim@ui10.sdfarm.kr:{file_location}
+
+# if you typed correctly then next step is password
